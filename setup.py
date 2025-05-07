@@ -10,7 +10,7 @@ setup(
     license="Apache 2",
     packages=setuptools.find_packages(),
     install_requires=[
-        "pytket ~= 2.2.0",
+        "pytket ~= 2.1.0",
     ],
     classifiers=[
         "Environment :: Console",
