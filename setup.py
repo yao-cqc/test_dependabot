@@ -10,8 +10,9 @@ setup(
     license="Apache 2",
     packages=setuptools.find_packages(),
     install_requires=[
-        "pytket == 2.1.0",
+        "pytket ~= 2.1.0",
     ],
+    extras_require={"quantinuum": ["pytket-quantinuum[pecos] ~= 0.40"]},
     classifiers=[
         "Environment :: Console",
         "Programming Language :: Python :: 3.10",
