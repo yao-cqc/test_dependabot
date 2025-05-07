@@ -9,9 +9,6 @@ setup(
     description="test dependabot",
     license="Apache 2",
     packages=setuptools.find_packages(),
-    install_requires=[
-        "pytket ~= 2.1.0",
-    ],
     classifiers=[
         "Environment :: Console",
         "Programming Language :: Python :: 3.10",
