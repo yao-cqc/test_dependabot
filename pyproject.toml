@@ -1,3 +1,4 @@
+[project]
 dependencies = [
-    "pytket ~= 2.1.0"
+  "pytket~=2.1.0"
 ]
