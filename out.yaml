@@ -1,0 +1,205 @@
+input:
+    job:
+        package-manager: pip
+        allowed-updates:
+            - update-type: all
+        ignore-conditions:
+            - dependency-name: pytket
+              source: out.yaml
+              version-requirement: '>2.2.0'
+        requirements-update-strategy: bump_versions
+        source:
+            provider: github
+            repo: yao-cqc/test_dependabot
+            directory: /
+            commit: 0cddc92291c1312f8b35b92cd4f56f18f6d18e97
+output:
+    - type: update_dependency_list
+      expect:
+        data:
+            dependencies:
+                - name: pytket
+                  requirements:
+                    - file: pyproject.toml
+                      groups: []
+                      requirement: ~=2.1.0
+                      source: null
+                    - file: requirements.txt
+                      groups:
+                        - dependencies
+                      requirement: ~=2.1.0
+                      source: null
+                    - file: setup.py
+                      groups:
+                        - install_requires
+                      requirement: ~=2.1.0
+                      source: null
+                  version: null
+                - name: pytket-quantinuum[pecos]
+                  requirements:
+                    - file: setup.py
+                      groups:
+                        - extras_require:quantinuum
+                      requirement: ~=0.40
+                      source: null
+                  version: null
+            dependency_files:
+                - /pyproject.toml
+                - /requirements.txt
+                - /setup.py
+    - type: create_pull_request
+      expect:
+        data:
+            base-commit-sha: 0cddc92291c1312f8b35b92cd4f56f18f6d18e97
+            dependencies:
+                - name: pytket
+                  previous-requirements:
+                    - file: pyproject.toml
+                      groups: []
+                      requirement: ~=2.1.0
+                      source: null
+                    - file: requirements.txt
+                      groups:
+                        - dependencies
+                      requirement: ~=2.1.0
+                      source: null
+                    - file: setup.py
+                      groups:
+                        - install_requires
+                      requirement: ~=2.1.0
+                      source: null
+                  requirements:
+                    - file: pyproject.toml
+                      groups: []
+                      requirement: ~=2.2.0
+                      source: null
+                    - file: requirements.txt
+                      groups:
+                        - dependencies
+                      requirement: ~=2.2.0
+                      source: null
+                    - file: setup.py
+                      groups:
+                        - install_requires
+                      requirement: '>=2.1,<2.3'
+                      source: null
+                  version: 2.2.0
+                  directory: /
+            updated-dependency-files:
+                - content: |+
+                    [project]
+                    name = "test_project"
+                    version = "0.0.1"
+                    dependencies = [
+                        "pytket ~= 2.2.0"
+                    ]
+
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /
+                  name: pyproject.toml
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: pytket ~= 2.2.0
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /
+                  name: requirements.txt
+                  operation: update
+                  support_file: false
+                  type: file
+                - content: |
+                    import setuptools  # type: ignore
+                    from setuptools import setup
+
+                    setup(
+                        name="test_dependabot",
+                        author="yao",
+                        author_email="test_dependabot@support.com",
+                        python_requires=">=3.10",
+                        description="test dependabot",
+                        license="Apache 2",
+                        packages=setuptools.find_packages(),
+                        install_requires=[
+                            "pytket >= 2.1,< 2.3",
+                        ],
+                        extras_require={"quantinuum": ["pytket-quantinuum[pecos] ~= 0.40"]},
+                        classifiers=[
+                            "Environment :: Console",
+                            "Programming Language :: Python :: 3.10",
+                            "Programming Language :: Python :: 3.11",
+                            "Programming Language :: Python :: 3.12",
+                            "Programming Language :: Python :: 3.13",
+                            "License :: OSI Approved :: Apache Software License",
+                            "Operating System :: MacOS :: MacOS X",
+                            "Operating System :: POSIX :: Linux",
+                            "Operating System :: Microsoft :: Windows",
+                            "Intended Audience :: Developers",
+                            "Intended Audience :: Science/Research",
+                            "Topic :: Scientific/Engineering",
+                        ],
+                        include_package_data=True,
+                        package_data={"pyqubit_reuse": ["py.typed"]},
+                        zip_safe=False,
+                        version="0.0.10",
+                    )
+                  content_encoding: utf-8
+                  deleted: false
+                  directory: /
+                  name: setup.py
+                  operation: update
+                  support_file: false
+                  type: file
+            pr-title: Update pytket requirement from ~=2.1.0 to ~=2.2.0
+            pr-body: |
+                Updates the requirements on [pytket](https://github.com/CQCL/tket) to permit the latest version.
+                <details>
+                <summary>Release notes</summary>
+                <p><em>Sourced from <a href="https://github.com/CQCL/tket/releases">pytket's releases</a>.</em></p>
+                <blockquote>
+                <h2>v2.2.0</h2>
+                <h2>What's Changed</h2>
+                <ul>
+                <li>Allow <code>AutoRebase</code> to <code>ISWAPMax</code> by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1822">CQCL/tket#1822</a></li>
+                <li>Fix cmake builds with cmake 4 by requiring cmake &gt;= 3.5. by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1827">CQCL/tket#1827</a></li>
+                <li>Fix path. by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1828">CQCL/tket#1828</a></li>
+                <li>Bump tket version. by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1830">CQCL/tket#1830</a></li>
+                <li>add fallback cdn for online circuit renderer by <a href="https://github.com/DNA386"><code>@​DNA386</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1829">CQCL/tket#1829</a></li>
+                <li>Preserve circuit name in <code>ZXGraphlikeOptimisation</code> pass by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1831">CQCL/tket#1831</a></li>
+                <li>Fix handling of <code>BitWiseOp.NEQ</code> when parsing QASM by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1834">CQCL/tket#1834</a></li>
+                <li>Enable deserialization of <code>NormaliseTK2</code> pass by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1837">CQCL/tket#1837</a></li>
+                <li>Keep all classical wires in <code>FlattenRelabelRegistersPass</code> by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1838">CQCL/tket#1838</a></li>
+                <li>Add &quot;_gen_scratch_transformation&quot; by <a href="https://github.com/sjdilkes"><code>@​sjdilkes</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1835">CQCL/tket#1835</a></li>
+                <li>Update changelog for 2.2.0 release. by <a href="https://github.com/cqc-alec"><code>@​cqc-alec</code></a> in <a href="https://redirect.github.com/CQCL/tket/pull/1839">CQCL/tket#1839</a></li>
+                </ul>
+                <p><strong>Full Changelog</strong>: <a href="https://github.com/CQCL/tket/compare/v2.1.0...v2.2.0">https://github.com/CQCL/tket/compare/v2.1.0...v2.2.0</a></p>
+                </blockquote>
+                </details>
+                <details>
+                <summary>Commits</summary>
+                <ul>
+                <li><a href="https://github.com/CQCL/tket/commit/a1713d4f0a6a15c9f62f2c03fb77c6c8579d5202"><code>a1713d4</code></a> Update changelog for 2.2.0 release. (<a href="https://redirect.github.com/CQCL/tket/issues/1839">#1839</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/fb23683050d62dda76fdaf698aaf910a58535a65"><code>fb23683</code></a> Add &quot;_gen_scratch_transformation&quot; (<a href="https://redirect.github.com/CQCL/tket/issues/1835">#1835</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/5a4f99cd4661ed9a3aed3cb9124f4cd51b32b305"><code>5a4f99c</code></a> Keep all classical wires in <code>FlattenRelabelRegistersPass</code> (<a href="https://redirect.github.com/CQCL/tket/issues/1838">#1838</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/0c531cac60c8311a55bc791618143e646d17f473"><code>0c531ca</code></a> Enable deserialization of <code>NormaliseTK2</code> pass (<a href="https://redirect.github.com/CQCL/tket/issues/1837">#1837</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/918c58f0d31e2310bc1e992aab7e81beaa65a0fb"><code>918c58f</code></a> Fix handling of <code>BitWiseOp.NEQ</code> when parsing QASM (<a href="https://redirect.github.com/CQCL/tket/issues/1834">#1834</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/2be03356fc885adb87a31a54fa5b791b0e14d9b5"><code>2be0335</code></a> Preserve circuit name in <code>ZXGraphlikeOptimisation</code> pass (<a href="https://redirect.github.com/CQCL/tket/issues/1831">#1831</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/d3e0c880452d964c72b2ecf135a950a955c51b7e"><code>d3e0c88</code></a> add fallback cdn for online circuit renderer (<a href="https://redirect.github.com/CQCL/tket/issues/1829">#1829</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/2015c156aa3274fa89db014d37e95dc5d6936287"><code>2015c15</code></a> Bump tket version. (<a href="https://redirect.github.com/CQCL/tket/issues/1830">#1830</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/fa24aabdcd88e25df46723d7f50146b05b8fecb9"><code>fa24aab</code></a> Fix path. (<a href="https://redirect.github.com/CQCL/tket/issues/1828">#1828</a>)</li>
+                <li><a href="https://github.com/CQCL/tket/commit/5f1cd57a4391b6c38c97b0df4fac1fee7232f391"><code>5f1cd57</code></a> Fix cmake builds with cmake 4 by requiring cmake &gt;= 3.5. (<a href="https://redirect.github.com/CQCL/tket/issues/1827">#1827</a>)</li>
+                <li>Additional commits viewable in <a href="https://github.com/CQCL/tket/compare/v2.1.0...v2.2.0">compare view</a></li>
+                </ul>
+                </details>
+                <br />
+            commit-message: |-
+                Update pytket requirement from ~=2.1.0 to ~=2.2.0
+
+                Updates the requirements on [pytket](https://github.com/CQCL/tket) to permit the latest version.
+                - [Release notes](https://github.com/CQCL/tket/releases)
+                - [Commits](https://github.com/CQCL/tket/compare/v2.1.0...v2.2.0)
+    - type: mark_as_processed
+      expect:
+        data:
+            base-commit-sha: 0cddc92291c1312f8b35b92cd4f56f18f6d18e97
