@@ -1,14 +1,7 @@
-[build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.4", "conan"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "test_project"
 version = "0.0.1"
 dependencies = [
     "pytket ~= 2.1.0"
 ]
-
-[project.optional-dependencies]
-quantinuum = ["pytket-quantinuum[pecos] ~= 0.40"]
 

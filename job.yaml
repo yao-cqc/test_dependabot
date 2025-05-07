@@ -1,0 +1,11 @@
+# job.yaml
+job:
+    package-manager: pip
+    requirements-update-strategy: bump_versions
+    # requirements-update-strategy: widen_ranges
+    allowed-updates:
+      - update-type: all
+    source:
+        provider: github
+        repo: yao-cqc/test_dependabot
+        directory: /
