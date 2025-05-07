@@ -1,6 +1,9 @@
 import setuptools  # type: ignore
 from setuptools import setup
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
     name="test_dependabot",
     author="yao",
@@ -24,6 +27,7 @@ setup(
         "Topic :: Scientific/Engineering",
     ],
     include_package_data=True,
+    install_requires=requirements,
     package_data={"pyqubit_reuse": ["py.typed"]},
     zip_safe=False,
     version="0.0.10",
